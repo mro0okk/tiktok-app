@@ -83,7 +83,6 @@ export const getUserById = async (userId) => {
 //=======================================================
 //get-users by id or all
 export const getAllUsers = async (userId) => {
-  console.log(userId);
   return new Promise(async (resolve, reject) => {
     let users = {}
     try {
@@ -102,7 +101,6 @@ export const getAllUsers = async (userId) => {
           },
         })
       }
-      console.log(users)
       resolve({
         errCode: 0,
         message: "No Problems",
@@ -208,23 +206,27 @@ export const editUser = async (data) => {
         await user.save()
         resolve({
           errCode: 0,
-          message: `user was change!`
+          message: `user was changed without password !`
         })
       } if (data.id && data.password) {
         const user = await db.User.findOne({
           where: { id: data.id },
           attributes: {
-            exclude: ["status"]
+            exclude: ["status", "email"]
           },
           raw: false,
         })
-        const check = bcryptjs.compareSync(password, user.password)
+        const check = bcryptjs.compareSync(data.password, user.password)
         if (check) {
-          await user.set(data)
+          const newPassword = await validator.hashUserPassword(data.newPassword)
+          await user.set({
+            ...data,
+            password: newPassword
+          })
           await user.save()
           resolve({
             errCode: 0,
-            message: "user was changed !"
+            message: "password was changed !"
           })
         } else {
           resolve({
