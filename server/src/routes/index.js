@@ -5,16 +5,18 @@ const router = express.Router()
 
 const initApiRoutes = (app) => {
   //=======================================================
+  /* home handle */
   router.get("/", postController.getPostController)
   router.post('/login', userController.handleLogin)
   //=======================================================
-  //UserHandle
+  /* users handle */
   router.get("/users/get-users/:id", userController.getUsersController)
   router.delete('/users/delete-user', userController.deleteUserController)
-  router.post("/api/create-user", userController.createUserController)
+  router.post("/users/create-user", userController.createUserController)
+  router.put("/users/edit-user", userController.editUserController)
 
   //=======================================================
-  //Post handle
+  /* posts handle */
   router.post("/posts/create-post", postController.createPostController)
   router.delete('/posts/delete-post', postController.deletePostController)
   router.put('/posts/edit-post', postController.editPostController)

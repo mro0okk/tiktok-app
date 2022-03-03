@@ -9,49 +9,77 @@ errCode:4 => system error !
 */
 //===========================================================
 
-
+//===========================================================
 export const createUserController = async (req, res) => {
-  const message = await userService.createUser(req.body)
-  if (req.body) {
-    return res.status(200).json(message)
+
+  if (!req.body) {
+    return res.status(204).json({
+      errCode: 2,
+      errMessage: "Missing parameter!"
+    })
   } else {
-    return res.status(204).json(message)
+    const message = await userService.createUser(req.body)
+    return res.status(200).json(message)
   }
 }
 //===========================================================
 
 export const getUsersController = async (req, res) => {
-  const id = req.params.id //ALL or id
-  const users = await userService.getAllUsers(id)
-  return res.status(200).json({
-    errCode: 0,
-    errMessage: "No Problems",
-    users,
-  })
+  if (!req.params.id) {
+    return res.status(404).json({
+      errCode: 2,
+      errMessage: " Chưa nhập kìa!"
+    })
+  } else {
+    const message = await userService.getAllUsers(req.params)
+    return res.status(200).json(message)
+  }
 }
 //===========================================================
 
 export const handleLogin = async (req, res) => {
-  const username = req.body.username
-  const password = req.body.password
-  if (!email || !password) {
-    return res.status(500).json({
-      errCode: 1,
-      message: "missing input parameter!",
+  console.log(req.body)
+  if (!req.body) {
+    return res.status(204).json({
+      errCode: 2,
+      errMessage: "Missing parameter!"
+    })
+  } else {
+    const username = req.body.username
+    const password = req.body.password
+    const userData = await userService.handleUserLogin(username, password)
+    return res.status(200).json({
+      errCode: userData.errCode,
+      message: userData.errMessage,
+      user: userData.user ? userData.user : {},
     })
   }
-  const userData = await handleUserLogin(username, password)
 
-  return res.status(200).json({
-    errCode: userData.errCode,
-    message: userData.errMessage,
-    user: userData.user ? userData.user : {},
-  })
 }
 //===========================================================
 export const deleteUserController = async (req, res) => {
-  const data = req.body
-  const message = await userService.deleteUser(data.id)
-  console.log(message)
-  return res.status(200).json({ mess: 'success' })
+  if (!req.body) {
+    return res.status(404).json({
+      errCode: 2,
+      errMessage: " Chưa nhập kìa!"
+    })
+  } else {
+    const data = req.body
+    const message = await userService.deleteUser(data.id)
+    console.log(message)
+    return res.status(200).json({ mess: 'success' })
+  }
 };
+//===========================================================
+export const editUserController = async (req, res) => {
+  if (!req.body) {
+    return res.status(404).json({
+      errCode: 2,
+      errMessage: " Chưa nhập kìa!"
+    })
+  } else {
+    const message = await userService.editUser(req.body)
+    return res.status(200).json(message)
+  }
+};
+

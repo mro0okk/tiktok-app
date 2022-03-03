@@ -6,8 +6,9 @@ import bcryptjs from 'bcryptjs'
 errCode:0, => mess: success!
 errCode:1 => errMess: something... not Found ?
 errCode:2 => errMess:"missing parameter!"
-errCode:3 => errMess: something... suggest is empty
+errCode:3 => errMessage: something... suggest is empty
 errCode:4 => system error !
+errCode:5 => system error !
 
 */
 //=======================================================
@@ -22,8 +23,10 @@ export const handleUserLogin = async (username, password) => {
       const isExist = await validator.checkUserEmail(username)
       if (isExist) {
         let user = await db.User.findOne({
-          attributes: ["email", "roleId", "password"],
           where: { username: username },
+          attributes: {
+            exclude: ["email", "roleId", "password"]
+          },
         })
 
         if (user) {
@@ -79,7 +82,8 @@ export const getUserById = async (userId) => {
 
 //=======================================================
 //get-users by id or all
-export const getAllUsers = (userId) => {
+export const getAllUsers = async (userId) => {
+  console.log(userId);
   return new Promise(async (resolve, reject) => {
     let users = {}
     try {
@@ -98,7 +102,12 @@ export const getAllUsers = (userId) => {
           },
         })
       }
-      resolve(users)
+      console.log(users)
+      resolve({
+        errCode: 0,
+        message: "No Problems",
+        users,
+      })
     } catch (error) {
       reject(error)
     }
@@ -179,3 +188,53 @@ export const deleteUser = async (userId) => {
 
 }
 //===========================================================
+export const editUser = async (data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!data.id) {
+        resolve({
+          errCode: 2,
+          errMessage: "missing parameter!"
+        })
+      } if (data.id && !data.password) {
+        const user = await db.User.findOne({
+          where: { id: data.id },
+          attributes: {
+            exclude: ["status", "password", "email", "updateAt"]
+          }
+          , raw: false
+        })
+        await user.set(data)
+        await user.save()
+        resolve({
+          errCode: 0,
+          message: `user was change!`
+        })
+      } if (data.id && data.password) {
+        const user = await db.User.findOne({
+          where: { id: data.id },
+          attributes: {
+            exclude: ["status"]
+          },
+          raw: false,
+        })
+        const check = bcryptjs.compareSync(password, user.password)
+        if (check) {
+          await user.set(data)
+          await user.save()
+          resolve({
+            errCode: 0,
+            message: "user was changed !"
+          })
+        } else {
+          resolve({
+            errCode: 5,
+            errMessage: "wrong password!"
+          })
+        }
+      }
+    } catch (e) {
+      reject(e)
+    }
+  })
+};

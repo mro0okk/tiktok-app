@@ -10,6 +10,7 @@ errCode:4 => system error !
 */
 
 
+//=======================================================
 
 export const getPosts = async (postId) => {
   return new Promise(async (resolve, reject) => {
@@ -135,6 +136,7 @@ export const deletePost = async (postId) => {
     }
   })
 };
+//=======================================================
 export const editPost = async (data) => {
   return new Promise(async (resolve, reject) => {
     try {
