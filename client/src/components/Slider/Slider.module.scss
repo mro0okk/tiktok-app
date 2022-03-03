@@ -1,0 +1,141 @@
+$color-primary: #fe2c55;
+:root {
+  h3,
+  p {
+    margin: 0;
+    padding: 0;
+  }
+}
+@mixin hide {
+  .hide {
+    display: none;
+    padding: 0;
+  }
+}
+
+.slider {
+  box-sizing: border-box;
+  position: fixed;
+  top: 60px;
+  bottom: 0;
+
+  max-width: 356px;
+  max-height: 100%;
+  padding: 0 12px;
+  background-color: #fff;
+
+  overflow-x: hidden;
+  overflow-y: scroll;
+  overscroll-behavior-y: contain;
+
+  perspective: 1px;
+  transform-style: preserve-3d;
+  z-index: 99;
+}
+
+.mainNav {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+  padding: 8px 0;
+  cursor: pointer;
+  border-bottom: 1px solid #3333332a;
+
+  .mainNavHome {
+    padding: 12px;
+    line-height: 1.5;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    &:hover {
+      background-color: rgb(243, 243, 243);
+    }
+    span {
+      margin-left: 1em;
+    }
+    @include hide();
+  }
+  .active {
+    color: $color-primary;
+  }
+  .text__follow {
+    display: inline-block;
+    padding-bottom: 1em;
+    color: rgba(22, 24, 35, 0.5);
+    font-weight: 500;
+  }
+  .btnLogin {
+    display: block;
+    width: 100%;
+    height: 48px;
+    margin-bottom: 1em;
+
+    border: 1px solid red;
+    border-radius: 5px;
+
+    font-size: larger;
+
+    color: $color-primary;
+    background-color: #fe2c5600;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #fe2c5616;
+    }
+  }
+  .user {
+    display: flex;
+    padding: 6px 0;
+    font-size: 0.8em;
+
+    img {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+    }
+
+    span {
+      margin-left: 1.4em;
+    }
+
+    cursor: pointer;
+    &:hover {
+      background-color: rgba(102, 102, 102, 0.04);
+    }
+  }
+}
+.tags {
+  flex-direction: row;
+  flex-wrap: wrap;
+  .tag {
+    max-width: fit-content;
+    padding: 0.17em 0.5em;
+    margin: 0 8px 12px 0;
+    border: 1px solid #16182333;
+    border-radius: 12px;
+  }
+}
+.footer {
+  color: #666;
+  line-height: 1.7em;
+  line-break: strict;
+}
+@media (max-width: 1002px) {
+  .s_1 {
+    box-sizing: border-box;
+    max-width: 68px;
+    border-right: 1px solid rgba(22, 24, 35, 0.12);
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.06);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .none {
+    display: none;
+  }
+  .mainNav:nth-child(3) {
+    border: none;
+  }
+}

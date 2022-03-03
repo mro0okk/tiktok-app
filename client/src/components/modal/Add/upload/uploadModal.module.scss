@@ -1,0 +1,103 @@
+.loginModal {
+  box-sizing: border-box;
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  background-image: url(https://image.freepik.com/free-vector/tiktok-background-with-paint-splash_1361-2635.jpg);
+  background-repeat: none;
+  background-position: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.toggleModal {
+  display: flex;
+}
+
+.loginZone {
+  position: relative;
+  margin: auto;
+  padding: 1em 4em;
+  width: 50rem;
+  max-height: 40rem;
+  background-color: rgba(0, 0, 0, 0.578);
+  color: hsl(220, 100%, 62%);
+  border-radius: 12px;
+  header {
+    display: flex;
+    position: relative;
+    width: 116%;
+    margin-top: -1em;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    margin-left: -4em;
+    .escapeBtn {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 40px;
+      height: 40px;
+
+      padding: 0px;
+      color: white;
+
+      border: medium none;
+      border-radius: 100%;
+      cursor: pointer;
+      background: rgba(248, 91, 0, 0.628) none repeat scroll 0% 0%;
+      &:hover {
+        background: rgba(171, 88, 0, 0.993) none repeat scroll 0% 0%;
+      }
+    }
+  }
+  h2 {
+    margin: 1em;
+  }
+}
+.upload {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+}
+.uploadInfo {
+  display: flex;
+  padding: 0.3em;
+  justify-content: space-between;
+}
+.uploadInfoRight {
+  margin-left: 5rem;
+}
+.uploadInput {
+  width: 60%;
+  padding: 5px 15px;
+  border: 0.5px solid pink;
+  border-radius: 20px;
+  background-color: white;
+}
+.uploadInput:focus {
+  outline: solid #ec002f;
+}
+.uploadBtn {
+  margin: 1em 25%;
+  width: 50%;
+  padding: 0.5em 0;
+  background-color: #fe2c55;
+  color: white;
+  border: none;
+  border-radius: 10px;
+}
+.uploadBtn:hover {
+  background-color: #ca2647;
+}
+.footerLogin {
+  position: relative;
+  bottom: 0;
+  padding: 2em 0;
+  b {
+    color: rgb(224, 255, 23);
+    font-weight: bolder;
+    cursor: pointer;
+  }
+}

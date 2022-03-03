@@ -1,0 +1,81 @@
+$border-color: #ddd;
+
+.loginModal {
+  box-sizing: border-box;
+  display: none;
+  position: fixed;
+  z-index: 9999;
+
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.toggleModal {
+  display: flex;
+}
+.loginZone {
+  position: relative;
+  margin: auto;
+  padding: 1em 4em;
+  width: 320px;
+  max-height: 500px;
+  background-color: #fff;
+  border-radius: 12px;
+  header {
+    display: flex;
+    .escapeBtn {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 40px;
+      height: 40px;
+
+      padding: 0px;
+
+      border: medium none;
+      border-radius: 100%;
+      cursor: pointer;
+      background: rgba(22, 24, 35, 0.06) none repeat scroll 0% 0%;
+      &:hover {
+        background: rgba(22, 24, 35, 0.1) none repeat scroll 0% 0%;
+      }
+    }
+  }
+  h2 {
+    margin: 1em;
+  }
+}
+.loginOption {
+  display: flex;
+  border: 1px solid $border-color;
+}
+.channelItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-right: 1px solid $border-color;
+}
+.channel {
+  display: flex;
+  padding: 0.7em;
+  align-items: center;
+  cursor: pointer;
+}
+.footerLogin {
+  position: relative;
+  bottom: 0;
+  padding: 2em 0;
+  b {
+    color: rgb(216, 50, 0);
+    font-weight: bolder;
+    cursor: pointer;
+  }
+}
+.loginOptions {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}

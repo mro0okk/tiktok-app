@@ -1,0 +1,140 @@
+$primary-color: #fe2c55;
+@mixin video {
+  position: relative;
+  width: 100%;
+  max-height: 600px;
+  background-size: cover;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-right: 20px;
+}
+@mixin hide {
+  .hide {
+    visibility: hidden;
+  }
+}
+@mixin icon {
+  position: absolute;
+  height: 32px;
+  width: 32px;
+}
+.key {
+  height: 320px;
+  margin-bottom: 10px;
+}
+
+.videoContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+.video {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  .videoItemWid {
+    width: auto;
+    height: auto;
+  }
+}
+.videoItem {
+  @include video();
+  height: 600px;
+
+  .videoPlay,
+  .videoSoundIconBtn {
+    position: absolute;
+    bottom: 1em;
+    height: 32px;
+    width: 32px;
+  }
+
+  .videoPlay {
+    left: 1em;
+    .videoPlayIconBtn {
+      @include icon();
+    }
+    @include hide();
+  }
+
+  .videoSoundIconBtn {
+    right: 1em;
+
+    .videoSoundIcon {
+      @include icon();
+    }
+    @include hide();
+  }
+}
+.video__player {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  object-fit: fill;
+}
+.videoIcon {
+  display: flex;
+  flex-direction: column;
+  max-width: fit-content;
+  span {
+    margin-left: 6px;
+  }
+}
+
+.videoIconBtn {
+  margin: 5px 0;
+  width: 34px;
+  height: 34px;
+  background-color: #f1f1f2;
+  cursor: pointer;
+  .active {
+    color: $primary-color;
+  }
+  &:hover {
+    background-color: #d8d8da;
+  }
+  border-radius: 50%;
+  .icon {
+    line-height: 2em;
+    margin-left: 26%;
+    transform: translateY(51%);
+  }
+}
+
+@media only screen and (max-width: 1919px) {
+  .videoItem {
+    height: calc(450px + (100vw - 768px) / 1152 * 100);
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .videoItem {
+    height: calc(380px + (100vw - 480px) / 288 * 20);
+  }
+  .videoItemWid {
+    width: calc(346.667px + 6.94444vw);
+  }
+  .key {
+    height: 400px;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .videoItem {
+    height: auto;
+  }
+  .videoItemWid {
+    width: calc(346.667px + 6.94444vw);
+    width: calc(-92px + 100vw);
+  }
+  .videoIconBtn {
+    max-width: 32px;
+    max-height: 32px;
+    .icon {
+      line-height: 32px;
+    }
+  }
+}

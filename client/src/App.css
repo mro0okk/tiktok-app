@@ -1,0 +1,119 @@
+body {
+  font-size: 16px;
+}
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-color: hsla(0, 0%, 28%, 0.422);
+}
+
+.livepage {
+  max-width: 100%;
+}
+.container {
+  max-width: 1150px;
+  align-self: center;
+  margin: auto;
+  max-height: fit-content;
+}
+
+.wrapper {
+  max-width: 1150px;
+  margin-left: 33.333%;
+  margin-top: 60px;
+}
+.none740 {
+  display: none;
+}
+.main {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+
+  flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  -webkit-flex: 1 1 auto;
+
+  align-self: center;
+  -ms-flex-item-align: center;
+  -webkit-align-self: center;
+
+  width: 100vw;
+  max-width: 1150px;
+  max-height: fit-content;
+
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+
+#followPageContent {
+  margin-top: 60px;
+  margin-left: 33.333%;
+}
+@media only screen and (max-width: 764px) {
+  .search__none {
+    display: none;
+  }
+}
+.embed-responsive {
+  position: relative;
+  display: block;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+}
+@media only screen and (max-width: 1002px) {
+  .wrapper {
+    margin-left: 68px;
+    max-width: 1002px;
+  }
+}
+@media only screen and (max-width: 740px) {
+  .wrapper {
+    max-width: 740px;
+  }
+  .none740 {
+    display: inline-block;
+    transform: translateY(25%);
+  }
+}
+@media only screen and (max-width: 480px) {
+  .wrapper {
+    margin-left: 68px;
+    max-width: fit-content;
+  }
+  .container {
+    max-width: 480px;
+  }
+}
+.lds_dual_ring {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  bottom: 0;
+  right: 0;
+  display: block;
+}
+.lds_dual_ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid rgb(224, 0, 94);
+  border-color: #fff transparent rgb(224, 0, 94) transparent;
+  animation: lds_dual_ring 1.2s linear infinite;
+}
+@keyframes lds_dual_ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
