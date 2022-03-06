@@ -8,31 +8,52 @@ body {
   border-radius: 20px;
   background-color: hsla(0, 0%, 28%, 0.422);
 }
-
 .livepage {
   max-width: 100%;
 }
 .container {
   max-width: 1150px;
-  align-self: center;
   margin: auto;
   max-height: fit-content;
+  margin-top: 62px;
+  background-color: 2px solid red;
+}
+.subtext {
+  font-family: proxima-regular, Arial, Tahoma, PingFangSC, sans-serif,
+    "Segoe UI Emoji", "Noto Emoji";
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 24px;
+  color: rgb(138, 139, 145);
+  margin-top: 2px;
+}
+.maintext {
+  font-size: 16px;
+  font-weight: 700;
+  color: black;
+  margin: 2px 0;
 }
 
 .wrapper {
   max-width: 1150px;
-  margin-left: 33.333%;
-  margin-top: 60px;
+  margin-left: 35%;
+  margin-top: 1rem;
 }
 .none740 {
   display: none;
+}
+.text-reset {
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  color: black;
+  background-color: transparent;
 }
 .main {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-
   flex: 1 1 auto;
   -ms-flex: 1 1 auto;
   -webkit-flex: 1 1 auto;
@@ -50,10 +71,6 @@ body {
   justify-content: space-between;
 }
 
-#followPageContent {
-  margin-top: 60px;
-  margin-left: 33.333%;
-}
 @media only screen and (max-width: 764px) {
   .search__none {
     display: none;
@@ -116,4 +133,65 @@ body {
   100% {
     transform: rotate(360deg);
   }
+}
+.w-1 {
+  width: 10%;
+}
+.w-2 {
+  width: 20%;
+}
+.w-3 {
+  width: 30%;
+}
+.w-4 {
+  width: 40%;
+}
+.w-5 {
+  width: 50%;
+}
+.w-6 {
+  width: 60%;
+}
+.w-7 {
+  width: 70%;
+}
+.w-8 {
+  width: 80%;
+}
+.w-9 {
+  width: 90%;
+}
+.w-10 {
+  width: 100%;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
+}
+.mb-2 {
+  margin-bottom: 2rem;
+}
+.mb-3 {
+  margin-bottom: 3rem;
+}
+.mb-4 {
+  margin-bottom: 4rem;
+}
+.mb-5 {
+  margin-bottom: 5rem;
+}
+.mt-1 {
+  margin-top: 1rem;
+}
+.mt-2 {
+  margin-top: 2rem;
+}
+.mt-3 {
+  margin-top: 3rem;
+}
+.mt-4 {
+  margin-top: 4rem;
+}
+.mt-5 {
+  margin-top: 5rem;
 }

@@ -1,0 +1,88 @@
+$primary-color: #fe2c55;
+@mixin video {
+  position: relative;
+  width: 100%;
+  max-height: 600px;
+  background-size: cover;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-right: 20px;
+}
+@mixin hide {
+  .hide {
+    visibility: hidden;
+  }
+}
+@mixin icon {
+  position: absolute;
+  height: 32px;
+  width: 32px;
+}
+
+.videoContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 5px solid red;
+  border-radius: 1rem;
+
+  overflow: hidden;
+  .videoItem {
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 1rem;
+    border: 5px solid rgb(0, 149, 255);
+    .video__player {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border: 5px solid rgb(34, 255, 0);
+    }
+  }
+
+  .videoCover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border: 5px solid rgb(238, 0, 255);
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1919px) {
+  .videoItem {
+    height: calc(450px + (100vw - 768px) / 1152 * 100);
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .videoItem {
+    height: calc(380px + (100vw - 480px) / 288 * 20);
+  }
+  .videoItemWid {
+    width: calc(346.667px + 6.94444vw);
+  }
+  .key {
+    height: 400px;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .videoItem {
+    height: auto;
+  }
+  .videoItemWid {
+    width: calc(346.667px + 6.94444vw);
+    width: calc(-92px + 100vw);
+  }
+  .videoIconBtn {
+    max-width: 32px;
+    max-height: 32px;
+    .icon {
+      line-height: 32px;
+    }
+  }
+}
