@@ -1,8 +1,10 @@
 import express from "express"
 import * as userController from "../controllers/userController.js"
 import * as postController from "../controllers/postController.js"
+import { upload } from "../multerStorage.js"
+import dotenv from "dotenv"
 const router = express.Router()
-
+dotenv.config()
 const initApiRoutes = (app) => {
   //=======================================================
   /* home handle */
@@ -17,9 +19,17 @@ const initApiRoutes = (app) => {
 
   //=======================================================
   /* posts handle */
-  router.post("/posts/create-post", postController.createPostController)
+  router.post("/posts/create-post", upload.single("video"), postController.createPostController)
   router.delete('/posts/delete-post', postController.deletePostController)
   router.put('/posts/edit-post', postController.editPostController)
+  //=======================================================
+  /* files handle */
+  // router.post("/file/video",, (req, res) => {
+  //   console.log(req.body)
+  //   console.log(req.file.path)
+  //   return res.send("success")
+  // })
+
   //=======================================================
   return app.use("/", router)
 }

@@ -65,7 +65,6 @@ export const deleteUserController = async (req, res) => {
   } else {
     const data = req.body
     const message = await userService.deleteUser(data.id)
-    console.log(message)
     return res.status(200).json({ mess: 'success' })
   }
 };

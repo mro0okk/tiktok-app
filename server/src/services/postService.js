@@ -1,4 +1,6 @@
 import db from "../models"
+import dotenv from "dotenv"
+dotenv.config()
 //=======================================================
 /*
 errCode:0, => mess: success!
@@ -16,17 +18,20 @@ export const getPosts = async (postId) => {
   return new Promise(async (resolve, reject) => {
     try {
       if (postId && postId === "ALL") {
-        const posts = await db.User.findAll({
+        const posts = await db.Posts.findAll({
           attributes: {
-            exclude: [
-              "password", "phoneNumber",
-              "address", "email",
-              "createdAt", "updatedAt"
-            ]
+            exclude: ["createdAt", "updatedAt"]
           },
           include: [{
-            model: db.Posts, as: "UserPost",
-            attributes: { exclude: ["createdAt", "updatedAt"] }
+            model: db.User, as: "postUser",
+            attributes: {
+              exclude: [
+                "id",
+                "password", "phoneNumber",
+                "address", "email",
+                "createdAt", "updatedAt"
+              ]
+            }
           }],
           raw: true,
           nest: true
@@ -83,7 +88,8 @@ export const getPosts = async (postId) => {
 }
 //=======================================================
 //without handle upload file (with multer)
-export const createPost = async (data) => {
+export const createPost = async (data, path) => {
+  const domain = process.env.DOMAIN || "http://localhost:5080"
   return new Promise(async (resolve, reject) => {
     try {
       await db.Posts.create({
@@ -92,7 +98,7 @@ export const createPost = async (data) => {
         description: data.description,
         song: data.song,
         thumbnail: data.thumbnail,
-        url: data.url,
+        url: `${domain}/public/videos/${path}`,
       })
 
       resolve({

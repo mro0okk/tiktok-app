@@ -5,13 +5,9 @@ import cors from "cors"
 import initApiRoutes from "./routes"
 import connectDB from "./config/connectDB.js"
 const app = express()
-// const router = express.Router()
 dotenv.config()
 let port = process.env.PORT || 5000
-
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
-
+app.use(cors())
 // app.use((req, res, next) => {
 //   res.setHeader("Access-Control-Allow-Origin", `http://localhost:${port}`)
 //   res.setHeader(
@@ -21,10 +17,13 @@ app.use(bodyParser.urlencoded({ extended: true }))
 //   res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type")
 //   res.setHeader("Access-Control-Allow-Credentials", true)
 // })
+app.use(bodyParser.json({ limit: '50mb' }))
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }))
+
+app.use('/public', express.static(__dirname + '/public'))
 initApiRoutes(app)
 connectDB()
 
-app.use(express.static(__dirname + '/public'))
 app.listen(port, () => {
   console.log(`Backend TIKTOK is running on: ${port} `)
 })

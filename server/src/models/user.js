@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       User.hasMany(models.UserFollow, { foreignKey: "authorId", as: "userFollow", onUpdate: 'CASCADE', onDelete: 'CASCADE' })
       User.hasMany(models.UserFollow, { foreignKey: "followerId", as: "followUser", onUpdate: 'CASCADE', onDelete: 'CASCADE' })
-      User.hasMany(models.Posts, { foreignKey: "userId", as: "UserPost", onUpdate: 'CASCADE', onDelete: 'CASCADE' })
+      User.hasMany(models.Posts, { foreignKey: "userId", as: "userPost", onUpdate: 'CASCADE', onDelete: 'CASCADE' })
       User.hasMany(models.Like, { foreignKey: '', as: "userLike", onUpdate: 'CASCADE', onDelete: 'CASCADE' })
     }
   }

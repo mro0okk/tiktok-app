@@ -11,7 +11,7 @@ errCode:4 => system error !
 
 
 export const getPostController = async (req, res) => {
-  const postId = req.query || "ALL"
+  const postId = req.params.id || "ALL"
   const data = await postService.getPosts(postId)
   return res.status(200).json(data)
 }
@@ -19,20 +19,24 @@ export const getPostController = async (req, res) => {
 //=======================================================
 
 export const createPostController = async (req, res) => {
+  console.log(req.file)
+  console.log("======================");
+  console.log(req.body);
+  console.log("======================");
   if (!req.body || req.body === null) {
     return res.status(204).json({
       errCode: 2,
       errMessage: "missing parameter!"
     })
   } else {
-    const message = await postService.createPost(req.body)
+    const message = await postService.createPost(req.body, req.file.filename)
     return res.status(200).json(message)
   }
 }
 //=======================================================
 
 export const deletePostController = async (req, res) => {
-  if (!req.body.id || req.body.id === null) {
+  if (!req.params.id || req.params.id === null) {
     return res.status(204).json({
       errCode: 2,
       errMessage: "missing parameter!"
