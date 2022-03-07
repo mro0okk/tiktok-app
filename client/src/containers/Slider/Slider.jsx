@@ -1,5 +1,6 @@
 import clsx from "clsx"
 import { useState } from "react"
+import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import ButtonLogin from "../../components/Button/ButtonLogin"
 import style from "./Slider.module.scss"
@@ -7,7 +8,7 @@ function Slider(data) {
   const href = window.location.href
   const originHref = window.location.origin
   const [pageName, setPageName] = useState(href)
-
+  const auth = useSelector((s) => s.user.isLoggedIn)
   return (
     <div className={clsx(style.slider, style.s_1)}>
       <div className={style.mainNav}>
@@ -125,15 +126,19 @@ function Slider(data) {
         </Link>
       </div>
       <div className={style.none}>
-        <div className={style.mainNav}>
-          <span className={clsx(style.text__follow)}>
-            Đăng nhập để xem các tác giả, thích video và xem bình luận
-          </span>
-          <ButtonLogin
-            className={clsx(style.btnLogin, style.none)}
-            logOps="Đăng nhập"
-          />
-        </div>
+        {auth ? (
+          <></>
+        ) : (
+          <div className={style.mainNav}>
+            <span className={clsx(style.text__follow)}>
+              Đăng nhập để xem các tác giả, thích video và xem bình luận
+            </span>
+            <ButtonLogin
+              className={clsx(style.btnLogin, style.none)}
+              logOps="Đăng nhập"
+            />
+          </div>
+        )}
       </div>
 
       <div className={style.mainNav}>

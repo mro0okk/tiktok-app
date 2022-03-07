@@ -92,7 +92,7 @@ export const createPost = async (data, path) => {
   const domain = process.env.DOMAIN || "http://localhost:5080"
   return new Promise(async (resolve, reject) => {
     try {
-      await db.Posts.create({
+      const send = await db.Posts.create({
         userId: data.userId,
         caption: data.caption,
         description: data.description,
@@ -100,7 +100,7 @@ export const createPost = async (data, path) => {
         thumbnail: data.thumbnail,
         url: `${domain}/public/videos/${path}`,
       })
-
+      console.log(send);
       resolve({
         errCode: 0,
         message: "create post success!",

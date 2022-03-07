@@ -1,4 +1,5 @@
 import Slider from "../containers/Slider/Slider"
+
 import "./LivePage.scss"
 function LivePage() {
   return (

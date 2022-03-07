@@ -3,7 +3,11 @@ import { getBase64 } from "../../utils"
 import { useDispatch, useSelector } from "react-redux"
 import "./UploadPage.scss"
 import { createPostStart } from "../../redux/actions/postActions"
+import { userInfo$ } from "../../redux/selectors"
+
 function UploadPage() {
+  const dispatch = useDispatch()
+  const { userInfo } = useSelector(userInfo$)
   const code = [
     "MP4 or WebM",
     "720x1280 resolution or higher",
@@ -14,18 +18,23 @@ function UploadPage() {
     caption: "",
     description: "",
     song: "",
-    userId: 1,
+    thumbnail: null,
+    userId: userInfo.id,
   }
-  const dispatch = useDispatch()
   const [post, setPost] = useState(postInit)
-  const [image, setImage] = useState(null)
   const [video, setVideo] = useState(null)
+  console.log(post)
   const transform = async (image) => {
     if (!image) {
       return
     } else {
       await getBase64(image)
-        .then((image64) => setImage(image64))
+        .then((image64) =>
+          setPost({
+            ...post,
+            thumbnail: image64,
+          })
+        )
         .catch((err) => console.error(err))
     }
   }
@@ -34,17 +43,13 @@ function UploadPage() {
   }
   const handleUploadPost = async (e) => {
     const formData = new FormData()
+    formData.append("video", video)
     for (let i = 0; i < Object.keys(post).length; i++) {
       const x = Object.keys(post)[i]
       formData.append(x, post[x])
     }
-    formData.append("video", video)
-    formData.append("thumbnail", image)
-
     dispatch(createPostStart(formData))
   }
-  const result = useSelector((s) => s.postlist)
-  result && console.log(result.message)
   const handleDiscard = () => {
     setImage(null)
     setVideo(null)
@@ -110,7 +115,7 @@ function UploadPage() {
                 })
               }}
             />
-            <label htmlFor="" className="input-target maintext">
+            <label htmlFor="thumbnail" className="input-target maintext">
               cover
             </label>
 

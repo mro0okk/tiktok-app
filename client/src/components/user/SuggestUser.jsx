@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import clsx from "clsx"
 import useModal from "../../hook/useModal"
 import ButtonLogin from "../Button/ButtonLogin"
+import { Link } from "react-router-dom"
 
 function SuggestUser({ style }) {
   const [showUpload, setShowing] = useModal()

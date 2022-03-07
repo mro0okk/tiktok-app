@@ -1,0 +1,53 @@
+.register {
+  display: flex;
+  margin: auto;
+  align-items: center;
+  flex-direction: column;
+  .registerContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 0 4rem 4rem 3rem;
+    justify-items: flex-end;
+    box-shadow: #0000000f 0px 2px 8px;
+    margin: 2rem 0;
+    h2 {
+      color: #fe2c55;
+    }
+    .registerSlice {
+      display: flex;
+      justify-content: space-between;
+      label {
+        align-self: center;
+        display: block;
+        font-size: 13px;
+        width: 5rem;
+      }
+      .wrapperInput {
+        box-sizing: border-box;
+        width: 100%;
+        margin: 0.4rem 0;
+        padding: 0.8rem 1.3rem;
+        display: inline-block;
+        border: 1px dotted #d6d6d6;
+        input {
+          font-size: 1.3rem;
+          border: none;
+          outline: none;
+        }
+        &:is {
+          border: 1px solid #fe2c55;
+        }
+      }
+    }
+  }
+  button {
+    width: 20%;
+    color: #fefefe;
+    background-color: cornflowerblue;
+    border: none;
+    padding: 1rem;
+    &:hover {
+      background-color: rgb(49, 113, 233);
+    }
+  }
+}

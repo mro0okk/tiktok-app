@@ -14,6 +14,6 @@ export const deletePost = async (postId) => {
   return res.data
 };
 export const editPost = async (data) => {
-  const res = await axios.put(`${baseURL}/posts/edit-post`, { data })
+  const res = await axios.put(`${baseURL}/posts/edit-post`, data)
   return res.data
 }

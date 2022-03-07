@@ -13,9 +13,9 @@ const initApiRoutes = (app) => {
   //=======================================================
   /* users handle */
   router.get("/users/get-users/:id", userController.getUsersController)
-  router.delete('/users/delete-user', userController.deleteUserController)
+  router.delete('/users/delete-user/:id', userController.deleteUserController)
   router.post("/users/create-user", userController.createUserController)
-  router.put("/users/edit-user", userController.editUserController)
+  router.put("/users/edit-user/:id", userController.editUserController)
 
   //=======================================================
   /* posts handle */

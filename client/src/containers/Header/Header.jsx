@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import clsx from "clsx"
 import style from "./Header.module.scss"
 import img from "../../public/img/logo.jpg"
-import SuggestUser from "../../components/unregistered/SuggestUser"
-
+import SuggestUser from "../../components/user/SuggestUser"
+import UserInfo from "../../components/user/UserInfo"
+import { useSelector } from "react-redux"
 function Header() {
   const [searchQuery, setSearchQuery] = useState("")
+  const { isLoggedIn, userInfo } = useSelector((s) => s.user)
   return (
     <div className={style.header}>
       <div className={style.headerFluid}>
@@ -39,7 +41,11 @@ function Header() {
             </svg>
           </button>
         </div>
-        <SuggestUser style={style} />
+        {isLoggedIn ? (
+          <UserInfo data={userInfo} style={style} />
+        ) : (
+          <SuggestUser style={style} />
+        )}
       </div>
     </div>
   )

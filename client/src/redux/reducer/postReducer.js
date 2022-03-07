@@ -3,39 +3,31 @@ import { initPostState } from "../constants/initialState";
 
 
 export default function postReducer(state = initPostState, action) {
-    let newState = { ...state }
+    const newState = { ...state }
     switch (action.type) {
-        case actionTypes.FETCH_POST_START:
+        case actionTypes.POST_LOADING:
             newState.isLoading = true
-            return {
-                ...newState
-            }
+            return newState
         case actionTypes.FETCH_POST_SUCCESS:
-
             newState.isLoading = false
-            newState.posts = action.posts
-
-            return {
-                ...newState
-            }
+            newState.posts = action.payload
+            return newState
         case actionTypes.FETCH_POST_FAILED:
             console.log(newState)
             newState.isLoading = false
-            return {
-                ...newState
-            }
+            return newState
         case actionTypes.CREATE_POST_SUCCESS:
             newState.isLoading = false
             newState.message = action.payload
-            return {
-                ...newState
-            }
-        case actionTypes.CREATE_POST_FAILED:
+            return newState
+        case actionTypes.UPDATE_POST_SUCCESS:
             newState.isLoading = false
-            action.payload
-            return {
-                ...newState
-            }
+            newState.message = action.payload
+            return newState
+        case actionTypes.DELETE_POST_SUCCESS:
+            newState.isLoading = false
+            newState.message = action.payload
+            return newState
         default:
             return state
     }

@@ -7,8 +7,8 @@ const ContainerVideo = lazy(() =>
 )
 const SkeletonVideo = lazy(() => import("../components/Skeleton/SkeletonVideo"))
 
-function Homepage() {
-  let posts = null
+function Homepage({ userInfo }) {
+  let posts = undefined
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(fetchPostStart())

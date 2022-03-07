@@ -8,25 +8,24 @@ errCode:1 => errMess: something... not Found ?
 errCode:2 => errMess:"missing parameter!"
 errCode:3 => errMessage: something... suggest is empty
 errCode:4 => system error !
-errCode:5 => system error !
 
 */
 //=======================================================
 //post login user controller
-export const handleUserLogin = async (username, password) => {
+export const handleUserLogin = async (email, password) => {
   return new Promise(async (resolve, reject) => {
     try {
       let userData = {
         errCode: "",
         errMessage: "no more message",
+        userInfo: {},
       }
-      const isExist = await validator.checkUserEmail(username)
+
+      const isExist = await validator.checkUserEmail(email)
       if (isExist) {
         let user = await db.User.findOne({
-          where: { username: username },
-          attributes: {
-            exclude: ["email", "roleId", "password"]
-          },
+          where: { email: email },
+
         })
 
         if (user) {
@@ -35,7 +34,7 @@ export const handleUserLogin = async (username, password) => {
           if (check) {
             userData.errCode = 0
             userData.errMessage = "OK"
-            userData.user = user
+            userData.userInfo = user
           } else {
             userData.errCode = 3
             userData.errMessage = "Incorrect password !"
@@ -46,7 +45,7 @@ export const handleUserLogin = async (username, password) => {
         }
       } else {
         userData.errCode = 1
-        userData.errMessage = `Your username isn't exist in your system! please try other or create a new one!`
+        userData.errMessage = `Your email isn't exist in your system! please try other or create a new one!`
       }
       resolve(userData)
     } catch (e) {
@@ -115,6 +114,7 @@ export const getAllUsers = async (userId) => {
 
 //==================create user =======================
 export const createUser = async (data) => {
+  console.log(data)
   return new Promise(async (resolve, reject) => {
     try {
       //check email user is exist
@@ -135,9 +135,6 @@ export const createUser = async (data) => {
           phoneNumber: data.phoneNumber,
           address: data.address,
           avatar: data.avatar,
-          following: data.following || "0",
-          follower: data.follower || "0",
-          roleId: data.roleId || "3",
         })
       }
       resolve({

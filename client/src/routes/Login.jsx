@@ -1,20 +1,80 @@
-import React from "react"
-import { useDispatch } from "react-redux"
-function LoginUser() {
+import React, { useEffect, useState } from "react"
+import { useNavigate, useLocation } from "react-router"
+import { useDispatch, useSelector } from "react-redux"
+import { userLogin } from "../redux/actions/userActions"
+import "./LivePage.scss"
+import { Link } from "react-router-dom"
+function LoginUser({ auth }) {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
-  const handleSubmit = (e) => {
-    e.prevendefault()
+  const location = useLocation()
+  const [login, setLogin] = useState({
+    email: "",
+    password: "",
+  })
+  console.log(auth)
+  const handleSubmit = () => {
+    dispatch(userLogin(login))
   }
+  useEffect(() => {
+    if (auth) {
+      console.log(auth)
+      navigate("/")
+    }
+  }, [auth])
   return (
-    <div>
-      <form className="login-user" onSubmit={(e) => handleSubmit(e)}>
-        <label htmlFor="email">Email</label>
-        <input type="email" className="" id="email" />
-        <label htmlFor="password">Password</label>
-
-        <input type="password" className="" id="password" autoComplete="off" />
-        <button>Đăng nhập</button>
-      </form>
+    <div className="login-wrapper">
+      <div className="login__container w-5">
+        <form
+          className="login__container--form"
+          onSubmit={(e) => {
+            e.preventDefault()
+            handleSubmit(e)
+          }}
+        >
+          <div className="login-info">
+            <div className="login__info--form">
+              <label htmlFor="email">Email: </label>
+              <input
+                type="email"
+                className=""
+                id="email"
+                value={login.email}
+                onChange={(e) => {
+                  setLogin({
+                    ...login,
+                    email: e.target.value,
+                  })
+                }}
+              />
+            </div>
+          </div>
+          <div className="login-info">
+            <div className="login__info--form">
+              <label htmlFor="password">Password: </label>
+              <input
+                type="password"
+                className=""
+                id="password"
+                autoComplete="off"
+                value={login.password}
+                onChange={(e) => {
+                  setLogin({
+                    ...login,
+                    password: e.target.value,
+                  })
+                }}
+              />
+            </div>
+          </div>
+          <button>Đăng nhập</button>
+          <Link to="/register">
+            <button style={{ backgroundColor: "hsl(100 80% 20%)" }}>
+              Đăng ký
+            </button>
+          </Link>
+        </form>
+      </div>
     </div>
   )
 }

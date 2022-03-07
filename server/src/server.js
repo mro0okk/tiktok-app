@@ -18,7 +18,7 @@ app.use(cors())
 //   res.setHeader("Access-Control-Allow-Credentials", true)
 // })
 app.use(bodyParser.json({ limit: '50mb' }))
-app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }))
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }))
 
 app.use('/public', express.static(__dirname + '/public'))
 initApiRoutes(app)

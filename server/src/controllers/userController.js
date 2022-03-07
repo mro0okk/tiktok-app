@@ -38,19 +38,19 @@ export const getUsersController = async (req, res) => {
 //===========================================================
 
 export const handleLogin = async (req, res) => {
-  if (!req.body.username || req.body.password) {
+  if (!req.body.email || !req.body.password) {
     return res.status(204).json({
       errCode: 2,
       errMessage: "Missing parameter!"
     })
   } else {
-    const username = req.body.username
+    const email = req.body.email
     const password = req.body.password
-    const userData = await userService.handleUserLogin(username, password)
+    const userData = await userService.handleUserLogin(email, password)
     return res.status(200).json({
       errCode: userData.errCode,
       message: userData.errMessage,
-      user: userData.user ? userData.user : {},
+      userInfo: userData.userInfo ? userData.userInfo : {},
     })
   }
 
@@ -70,7 +70,7 @@ export const deleteUserController = async (req, res) => {
 };
 //===========================================================
 export const editUserController = async (req, res) => {
-  if (!Object.keys(req.body)[0]) {
+  if (req.body.id) {
     return res.status(404).json({
       errCode: 2,
       errMessage: " Chưa nhập kìa!"

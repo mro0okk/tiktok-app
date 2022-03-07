@@ -19,19 +19,23 @@ export const getPostController = async (req, res) => {
 //=======================================================
 
 export const createPostController = async (req, res) => {
-  console.log(req.file)
-  console.log("======================");
-  console.log(req.body);
-  console.log("======================");
-  if (!req.body || req.body === null) {
-    return res.status(204).json({
-      errCode: 2,
-      errMessage: "missing parameter!"
-    })
-  } else {
-    const message = await postService.createPost(req.body, req.file.filename)
-    return res.status(200).json(message)
+  try {
+    await req.body
+    console.log(req.body.userId)
+    console.log("============================");
+    if (!req.body || req.body === null) {
+      return res.status(204).json({
+        errCode: 2,
+        errMessage: "missing parameter!"
+      })
+    } else {
+      const message = await postService.createPost(req.body, req.file.filename)
+      return res.status(200).json(message)
+    }
+  } catch (err) {
+    console.log("err: ", err);
   }
+
 }
 //=======================================================
 

@@ -24,21 +24,19 @@ $primary-color: #fe2c55;
   position: relative;
   width: 100%;
   height: 100%;
-  border: 5px solid red;
   border-radius: 1rem;
-
   overflow: hidden;
   .videoItem {
     position: relative;
     width: fit-content;
     height: fit-content;
     border-radius: 1rem;
-    border: 5px solid rgb(0, 149, 255);
     .video__player {
       position: relative;
       width: 100%;
       height: 100%;
-      border: 5px solid rgb(34, 255, 0);
+      max-width: 624px;
+      max-height: 624px;
     }
   }
 
