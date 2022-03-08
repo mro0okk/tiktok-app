@@ -114,7 +114,6 @@ export const getAllUsers = async (userId) => {
 
 //==================create user =======================
 export const createUser = async (data) => {
-  console.log(data)
   return new Promise(async (resolve, reject) => {
     try {
       //check email user is exist

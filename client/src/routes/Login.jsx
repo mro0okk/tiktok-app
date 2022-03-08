@@ -12,13 +12,11 @@ function LoginUser({ auth }) {
     email: "",
     password: "",
   })
-  console.log(auth)
   const handleSubmit = () => {
     dispatch(userLogin(login))
   }
   useEffect(() => {
     if (auth) {
-      console.log(auth)
       navigate("/")
     }
   }, [auth])

@@ -23,7 +23,6 @@ function UploadPage() {
   }
   const [post, setPost] = useState(postInit)
   const [video, setVideo] = useState(null)
-  console.log(post)
   const transform = async (image) => {
     if (!image) {
       return

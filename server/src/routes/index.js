@@ -23,14 +23,6 @@ const initApiRoutes = (app) => {
   router.delete('/posts/delete-post', postController.deletePostController)
   router.put('/posts/edit-post', postController.editPostController)
   //=======================================================
-  /* files handle */
-  // router.post("/file/video",, (req, res) => {
-  //   console.log(req.body)
-  //   console.log(req.file.path)
-  //   return res.send("success")
-  // })
-
-  //=======================================================
   return app.use("/", router)
 }
 

@@ -100,7 +100,6 @@ export const createPost = async (data, path) => {
         thumbnail: data.thumbnail,
         url: `${domain}/public/videos/${path}`,
       })
-      console.log(send);
       resolve({
         errCode: 0,
         message: "create post success!",

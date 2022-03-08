@@ -13,7 +13,6 @@ export default function postReducer(state = initPostState, action) {
             newState.posts = action.payload
             return newState
         case actionTypes.FETCH_POST_FAILED:
-            console.log(newState)
             newState.isLoading = false
             return newState
         case actionTypes.CREATE_POST_SUCCESS:

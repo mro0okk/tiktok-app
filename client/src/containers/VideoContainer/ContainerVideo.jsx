@@ -1,56 +1,15 @@
-import { useState, useRef, useEffect } from "react"
-import { Buffer } from "buffer"
+import { useRef } from "react"
 import clsx from "clsx"
 import Video from "../../components/Video/Video"
 import style from "./ContainerVideos.module.scss"
 import { arrayBufferToBase64 } from "../../utils"
 function ContainerVideos({ posts }) {
-  const [muted, setMuted] = useState(true)
-  const [playing, setPlaying] = useState(false)
-  const videoRef = useRef()
-  const thumbRef = useRef()
-  // const clientHeight = document.documentElement.clientHeight
-  // useEffect(() => {
-  //   const scroll = () => {
-  //     if (
-  //       videoRef.current &&
-  //       Math.abs(
-  //         videoRef.current.getBoundingClientRect().y +
-  //           (videoRef.current.getBoundingClientRect().height * 3) / 4 <
-  //           clientHeight
-  //       ) &&
-  //       videoRef.current.getBoundingClientRect().y + 100 > 0
-  //     ) {
-  //       videoRef.current.volume = 0.5
-
-  //       videoRef.current && setPlaying(true)
-
-  //       videoRef.current && videoRef.current.play()
-  //     } else {
-  //       videoRef.current && videoRef.current.pause()
-  //       videoRef.current && setPlaying(false)
-  //     }
-  //   }
-  //   window.addEventListener("scroll", scroll)
-  //   return () => window.removeEventListener("scroll", scroll)
-  // }, [playing, clientHeight])
-  // const handleMuted = () => {
-  //   setMuted(!muted)
-  // }
+  const ref = useRef()
 
   // const handleLikeVideo = () => {
-  //   if (isLike === false) {
-  //     return setLike(!isLike)
-  //   } else {
-  //     return setLike(!isLike)
-  //   }
+  // setLike(!isLike)
   // }
 
-  // const handleVideoPress = () => {
-  //   return !playing
-  //     ? (videoRef.current.play(), setPlaying(true))
-  //     : (videoRef.current.pause(), setPlaying(false))
-  // }
   return (
     <>
       {posts &&
@@ -62,7 +21,7 @@ function ContainerVideos({ posts }) {
                 <div className={style.TextInfoContainer}>
                   <div className={style.videoAuthor}>
                     <img
-                      ref={thumbRef}
+                      ref={ref}
                       src={image64}
                       alt={post.name}
                       className={clsx(style.avatar, "none740")}
@@ -70,7 +29,7 @@ function ContainerVideos({ posts }) {
                     <h2>
                       <div className={style.videoThumbnail}>
                         <img
-                          ref={thumbRef}
+                          ref={ref}
                           src={image64}
                           alt={post.name}
                           className={style.avatar}
@@ -96,7 +55,7 @@ function ContainerVideos({ posts }) {
                     <Video
                       url={post.url}
                       thumbnail={post.thumbnail}
-                      ref={videoRef}
+                      id={post.id}
                     />
                   </div>
                 </div>

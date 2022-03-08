@@ -21,8 +21,7 @@ export const getPostController = async (req, res) => {
 export const createPostController = async (req, res) => {
   try {
     await req.body
-    console.log(req.body.userId)
-    console.log("============================");
+
     if (!req.body || req.body === null) {
       return res.status(204).json({
         errCode: 2,
