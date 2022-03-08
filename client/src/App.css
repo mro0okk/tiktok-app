@@ -94,7 +94,7 @@ body {
     max-width: 740px;
   }
   .none740 {
-    display: inline-block;
+    display: inline-block !important;
     transform: translateY(25%);
   }
 }

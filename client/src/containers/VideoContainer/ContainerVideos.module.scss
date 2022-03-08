@@ -61,16 +61,11 @@ h5 {
   max-height: fit-content;
   border-bottom: 1px solid black;
   line-height: 1.5;
-
-  .videoThumbnail {
-    cursor: pointer;
-    .videoThumbnailItem {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-    }
+  .avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
   }
-
   .videoContainer {
     margin-left: 12px;
     width: 720px;
@@ -80,10 +75,11 @@ h5 {
     .TextInfoContainer {
       display: block;
       .videoAuthor {
-        margin-right: 114px;
         display: flex;
-        flex-direction: column;
-        .avatar {
+        flex-direction: row;
+        margin-right: 114px;
+        .videoThumbnail {
+          cursor: pointer;
         }
 
         h2 {
