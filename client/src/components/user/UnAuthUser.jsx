@@ -4,7 +4,7 @@ import useModal from "../../hook/useModal"
 import ButtonLogin from "../Button/ButtonLogin"
 import { Link } from "react-router-dom"
 
-function SuggestUser({ style }) {
+function UnAuthUser({ style }) {
   const [showUpload, setShowing] = useModal()
   const [showPopUp, setShowPopUp] = useState(false)
   const headerPopup = (action, elementId) => {
@@ -67,4 +67,4 @@ function SuggestUser({ style }) {
   )
 }
 
-export default SuggestUser
+export default UnAuthUser

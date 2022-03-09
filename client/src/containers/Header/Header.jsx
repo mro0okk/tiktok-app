@@ -2,7 +2,7 @@ import { useState } from "react"
 import clsx from "clsx"
 import style from "./Header.module.scss"
 import img from "../../public/img/logo.jpg"
-import SuggestUser from "../../components/user/SuggestUser"
+import UnAuthUser from "../../components/user/UnAuthUser"
 import UserInfo from "../../components/user/UserInfo"
 import { useSelector } from "react-redux"
 function Header() {
@@ -44,7 +44,7 @@ function Header() {
         {isLoggedIn ? (
           <UserInfo data={userInfo} style={style} />
         ) : (
-          <SuggestUser style={style} />
+          <UnAuthUser style={style} />
         )}
       </div>
     </div>

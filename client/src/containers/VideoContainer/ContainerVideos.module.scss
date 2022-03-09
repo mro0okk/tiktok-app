@@ -10,40 +10,7 @@ $color-primary: #fe2c55;
   line-height: 1.2em;
   margin-top: 4px;
 }
-.btnFollow {
-  box-sizing: border-box;
-  display: flex;
 
-  position: absolute;
-  min-height: 32px;
-  right: 1em;
-
-  border-width: 1px;
-  border-style: solid;
-  border-radius: 4px;
-
-  color: #fe2c55;
-  border-color: rgba(254, 44, 85, 1);
-  background-color: rgba(255, 255, 255, 1);
-
-  min-width: 106px;
-  min-height: 28px;
-
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 22px;
-
-  justify-content: center;
-  align-items: center;
-
-  user-select: none;
-  cursor: pointer;
-  position: absolute;
-  &:hover {
-    background-color: #fe2c5611;
-  }
-}
 h2,
 h5 {
   margin: 0;
@@ -54,7 +21,7 @@ h5 {
   display: flex;
   flex-direction: row;
   padding: 20px 0.4em;
-
+  margin-bottom: 2rem;
   position: relative;
   align-items: flex-start;
   max-width: 730px;
@@ -71,7 +38,6 @@ h5 {
     width: 720px;
     max-width: 720px;
     flex: 1 1 720px;
-
     .TextInfoContainer {
       display: block;
       .videoAuthor {
@@ -141,6 +107,7 @@ h5 {
     .videoWrapper {
       display: flex;
       flex-direction: row;
+      margin-top: 1.5rem;
       align-items: flex-end;
       .videoItem {
         position: relative;
@@ -157,6 +124,40 @@ h5 {
   height: 2em;
   border-radius: 50%;
   float: left;
+}
+.btnFollow {
+  box-sizing: border-box;
+  display: flex;
+
+  position: absolute;
+  min-height: 32px;
+  right: 1em;
+
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+
+  color: #fe2c55;
+  border-color: rgba(254, 44, 85, 1);
+  background-color: rgba(255, 255, 255, 1);
+
+  min-width: 106px;
+  min-height: 28px;
+
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+
+  justify-content: center;
+  align-items: center;
+
+  user-select: none;
+  cursor: pointer;
+  position: absolute;
+  &:hover {
+    background-color: #fe2c5611;
+  }
 }
 @media only screen and (max-width: 740px) {
   .itemContainer {

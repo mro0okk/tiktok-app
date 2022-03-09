@@ -106,9 +106,6 @@ $color-after: #b5b5b5;
   min-width: 100px;
   max-height: 36px;
   letter-spacing: -1px;
-  &:hover {
-    background-color: #dd2c50;
-  }
 }
 .btn__search {
   width: 52px;
@@ -203,7 +200,12 @@ $color-after: #b5b5b5;
     }
   }
 }
-
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  transform: translateY(-15%);
+}
 .btn__login {
   @extend .btn;
   box-sizing: border-box;
@@ -217,4 +219,19 @@ $color-after: #b5b5b5;
 
   font-weight: bolder;
   font-size: large;
+  &:hover {
+    background-color: #dd2c50;
+  }
+}
+.btnLogOut {
+  @extend .btn;
+  color: black;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  border: 1px solid rgb(72, 72, 72);
+  border-radius: 5px;
+  background-color: transparent;
+  &:hover {
+    background-color: #e7e7e7;
+  }
 }

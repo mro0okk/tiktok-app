@@ -1,20 +1,20 @@
-import React, { useState, useEffect, useRef, useMemo } from "react"
+import React, { useState, useEffect, useRef, useLayoutEffect } from "react"
 import clsx from "clsx"
 import style from "./Video.module.scss"
 import { arrayBufferToBase64 } from "../../utils"
-function Video({ url, thumbnail, id }, ref) {
+function Video({ url, thumbnail, id }, props) {
   const [muted, setMuted] = useState(true)
-  const [playing, setPlaying] = useState(false)
+  const [playing, setPlaying] = useState(props.autoPlay)
   const coverRef = useRef()
   const videoRef = useRef()
   const clientHeight = document.documentElement.clientHeight
-  useEffect(() => {
+  useLayoutEffect(() => {
     const scroll = () => {
       if (
         videoRef.current &&
         Math.abs(
           videoRef.current.getBoundingClientRect().y +
-            (videoRef.current.getBoundingClientRect().height * 3) / 4 <
+            (videoRef.current.getBoundingClientRect().height * 2) / 3 <
             clientHeight
         ) &&
         videoRef.current.getBoundingClientRect().y + 100 > 0
@@ -29,10 +29,10 @@ function Video({ url, thumbnail, id }, ref) {
         videoRef.current && setPlaying(false)
       }
     }
-    setTimeout(() => {
-      window.addEventListener("scroll", scroll)
-    }, 3000)
-    return () => window.removeEventListener("scroll", scroll)
+    window.addEventListener("scroll", scroll)
+    return () => {
+      window.removeEventListener("scroll", scroll)
+    }
   }, [playing, clientHeight, id])
 
   useEffect(() => {
@@ -45,11 +45,12 @@ function Video({ url, thumbnail, id }, ref) {
   }
 
   const handleVideoPress = () => {
-    return !playing
+    !playing
       ? (videoRef.current.play(), setPlaying(true))
       : (videoRef.current.pause(), setPlaying(false))
   }
   const cover = arrayBufferToBase64(thumbnail)
+
   return (
     <>
       <div className={style.videoContainer}>
@@ -60,6 +61,7 @@ function Video({ url, thumbnail, id }, ref) {
               className={clsx(style.video__player, "embed-responsive-item")}
               ref={videoRef}
               muted
+              loop
               onClick={handleVideoPress}
             ></video>
           </div>

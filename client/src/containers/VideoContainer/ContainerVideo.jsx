@@ -1,11 +1,11 @@
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import clsx from "clsx"
 import Video from "../../components/Video/Video"
 import style from "./ContainerVideos.module.scss"
 import { arrayBufferToBase64 } from "../../utils"
 function ContainerVideos({ posts }) {
   const ref = useRef()
-
+  const [autoPlay, setAutoPlay] = useState(false)
   // const handleLikeVideo = () => {
   // setLike(!isLike)
   // }
@@ -56,6 +56,8 @@ function ContainerVideos({ posts }) {
                       url={post.url}
                       thumbnail={post.thumbnail}
                       id={post.id}
+                      autoPlay={autoPlay}
+                      setPlay={setAutoPlay}
                     />
                   </div>
                 </div>

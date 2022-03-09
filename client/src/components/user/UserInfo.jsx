@@ -3,11 +3,14 @@ import { useDispatch } from "react-redux"
 import { arrayBufferToBase64 } from "../../utils"
 import { userLogout } from "../../redux/actions/userActions"
 import { Link } from "react-router-dom"
+import { useRef } from "react"
 function UserInfo({ style, data }) {
   const dispatch = useDispatch()
+  const userRef = useRef()
   const handleLogout = () => {
     dispatch(userLogout())
   }
+  const avatar = arrayBufferToBase64(data.avatar)
   return (
     <div className={clsx(style.info)}>
       <Link className={style.infoWrapper} to="/upload">
@@ -78,12 +81,9 @@ function UserInfo({ style, data }) {
         </span>
       </div>
       <div className={style.infoWrapper}>
-        <div
-          style={{ border: "1px solid #ccc", padding: "0.5rem 1rem" }}
-          onClick={handleLogout}
-        >
-          logout
-        </div>
+        <span ref={userRef}>
+          <img src={avatar} alt={data.name} className={style.avatar} />
+        </span>
       </div>
     </div>
   )
