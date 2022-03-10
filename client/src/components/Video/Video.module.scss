@@ -38,6 +38,12 @@ $primary-color: #fe2c55;
       max-width: 624px;
       max-height: 500px;
       border-radius: 1rem;
+      .videoHeight {
+        height: calc(450px + (100vw - 768px) / 1152 * 100);
+      }
+      .videoWidth {
+        width: calc(346.667px + 6.94444vw);
+      }
     }
   }
 

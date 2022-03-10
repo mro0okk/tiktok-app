@@ -51,6 +51,13 @@ function Video({ url, thumbnail, id }, props) {
   }
   const cover = arrayBufferToBase64(thumbnail)
 
+  useEffect(() => {
+    let height = videoRef.current.getBoundingClientRect().height
+    let width = videoRef.current.getBoundingClientRect().width
+    if (videoRef.current && width < height) {
+      console.dir(videoRef.current.classList.add(style.videoWidth))
+    }
+  }, [])
   return (
     <>
       <div className={style.videoContainer}>

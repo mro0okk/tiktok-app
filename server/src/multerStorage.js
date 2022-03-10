@@ -20,6 +20,6 @@ const fileStorageEngine = multer.diskStorage({
   }
 })
 
-export const upload = multer({ storage: fileStorageEngine })
+export const upload = multer({ storage: fileStorageEngine, limits: { fieldSize: 25 * 1024 * 1024 } })
 
 
