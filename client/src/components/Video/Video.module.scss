@@ -39,7 +39,7 @@ $primary-color: #fe2c55;
       max-height: 500px;
       border-radius: 1rem;
       .videoHeight {
-        height: calc(450px + (100vw - 768px) / 1152 * 100);
+        height: calc(450px + (100vw - 768px) / 1000 * 100);
       }
       .videoWidth {
         width: calc(346.667px + 6.94444vw);
@@ -58,26 +58,23 @@ $primary-color: #fe2c55;
 
 @media only screen and (max-width: 1919px) {
   .videoItem {
-    height: calc(450px + (100vw - 768px) / 1152 * 100);
+    height: calc(450px + (100vw - 768px) / 1000 * 100);
   }
 }
 
 @media only screen and (max-width: 767px) {
-  .videoItem {
+  .videoHeight {
     height: calc(380px + (100vw - 480px) / 288 * 20);
-  }
-  .videoItemWid {
-    width: calc(346.667px + 6.94444vw);
   }
   .key {
     height: 400px;
   }
 }
 @media only screen and (max-width: 480px) {
-  .videoItem {
+  .videoHeight {
     height: auto;
   }
-  .videoItemWid {
+  .videoWidth {
     width: calc(346.667px + 6.94444vw);
     width: calc(-92px + 100vw);
   }

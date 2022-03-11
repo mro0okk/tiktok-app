@@ -29,9 +29,11 @@ function Video({ url, thumbnail, id }, props) {
         videoRef.current && setPlaying(false)
       }
     }
-    window.addEventListener("scroll", scroll)
+    const timeId = setTimeout(() => {
+      window.addEventListener("scroll", scroll)
+    }, 3000)
     return () => {
-      window.removeEventListener("scroll", scroll)
+      clearTimeout(timeId)
     }
   }, [playing, clientHeight, id])
 
@@ -54,7 +56,7 @@ function Video({ url, thumbnail, id }, props) {
   useEffect(() => {
     let height = videoRef.current.getBoundingClientRect().height
     let width = videoRef.current.getBoundingClientRect().width
-    if (videoRef.current && width < height) {
+    if (videoRef.current && (width < height || width === height)) {
       console.dir(videoRef.current.classList.add(style.videoWidth))
     }
   }, [])
@@ -73,7 +75,7 @@ function Video({ url, thumbnail, id }, props) {
             ></video>
           </div>
           <div
-            className={style.videoCover}
+            className={clsx(style.videoCover, style.videoHeight)}
             ref={coverRef}
             style={{ background: `url(${cover} )` }}
             onClick={handleVideoPress}
